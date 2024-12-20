@@ -48,7 +48,7 @@ router.post("/", async (req, res) => {
         if (!isEmail){
             return send(res, setErrorRes(RESPONSE.INVALID,"email"));
         }
-        
+
         //FIND METHOD
 
 // let isExist = await studentModel.find({
