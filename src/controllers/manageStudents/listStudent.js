@@ -12,10 +12,14 @@ router.get("/:id?", async (req, res) => {
         // console.log(student_id);
         let rollno =req.query.rollno;
         let query={};
+        let student_id=req.query.id;
         query.isactive= STATE.ACTIVE;
 
         rollno != undefined ? (query.rollno = rollno) : "";
-     
+        
+        student_id != undefined
+        ? (query.$expr = { $eq : ["$_id", {$toObjectId: student_id}]})
+        : "";
         let studentData = await studentModel.aggregate([
             {
                 // $match: {
@@ -26,6 +30,9 @@ router.get("/:id?", async (req, res) => {
 
                 $match: query,
             },
+            // {
+            //     $match :{ $expr : { $eq : ["$_id", {$toObjectId: student_id}] }},
+            // },
             {
                 $project: {
                     isactive: 0,
