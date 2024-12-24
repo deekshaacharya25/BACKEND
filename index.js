@@ -8,6 +8,11 @@ import {connectDB} from "./src/helpers/dbConnection.js";
 import routes from "./router.js";
 dotenv.config();
 
+
+import cors from "cors";
+
+app.use(cors()); 
+
 const PORT=process.env.PORT;
 
 // router.get("/",(req,res) =>{

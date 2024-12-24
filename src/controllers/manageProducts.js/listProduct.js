@@ -11,7 +11,7 @@ router.get("/:id?", async (req, res) => {
     try {
         let product_id =req.query.product_id;
         let query={};
-        let p_id=req.query.id;
+        let p_id = req.query.id;
         query.isactive= STATE.ACTIVE;
 
         product_id != undefined ? (query.product_id = product_id) : "";
