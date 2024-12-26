@@ -5,12 +5,13 @@ import { RESPONSE } from "../../config/global.js";
 import {send, setErrorRes } from "../../helpers/responseHelper.js";
 import { STATE } from "../../config/constants.js";
 import validator from "validator";
+import { authenticate } from "../../middlewares/authenticate.js";
 
-router.post("/", async (req, res) => {
+router.post("/",authenticate, async (req, res) => {
     try {
 
         const { name, rollno, email } = req.body;
-        //console.log(req.body)
+        //console.log(req.body);
         const student = studentModel();
         // console.log({name,rollno,email});
         if (!name || name == undefined) {

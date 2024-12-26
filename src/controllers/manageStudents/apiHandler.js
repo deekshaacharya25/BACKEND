@@ -6,8 +6,6 @@ import listStudent from "./listStudent.js"
 import deleteStudent from "./deleteStudent.js"
 import editStudent from "./editStudent.js"
 
-// import addProduct from "../manageProducts/addProduct.js"
-// import listProduct from "../manageProducts/listProduct.js"
 
 router.use('/add',addStudent);
 router.use('/list',listStudent);
@@ -16,5 +14,7 @@ router.use('/edit',editStudent);
 
 // router.use('/add',addProduct);
 // router.use('/list',listProduct);
+// router.use('/delete',deleteProduct);
+// router.use('/edit', editProduct);
 
 export default router;
