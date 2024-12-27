@@ -5,14 +5,18 @@ import { RESPONSE } from "../../config/global.js";
 import {send, setErrorRes } from "../../helpers/responseHelper.js";
 import { STATE } from "../../config/constants.js";
 import validator from "validator";
-
-router.get("/:id?", async (req, res) => {
+import { authenticate } from "../../middlewares/authenticate.js";
+router.get("/", authenticate, async (req, res) => {
     try {
+       
         // let student_id =req.params.id;
         // console.log(student_id);
         let rollno =req.query.rollno;
         let query={};
         let student_id=req.query.id;
+        let teacher_id = req.user.id;
+        // query.teacher_id =teacher_id; //req.user.id;
+        query.$expr = { $eq : ["$teacher_id", {$toObjectId: teacher_id}]}
         query.isactive= STATE.ACTIVE;
 
         rollno != undefined ? (query.rollno = rollno) : "";
@@ -20,6 +24,8 @@ router.get("/:id?", async (req, res) => {
         student_id != undefined
         ? (query.$expr = { $eq : ["$_id", {$toObjectId: student_id}]})
         : "";
+
+        console.log(query);
         let studentData = await studentModel.aggregate([
             {
                 // $match: {

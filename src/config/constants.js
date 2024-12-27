@@ -3,3 +3,8 @@ export const STATE ={
     INACTIVE: 0,
 };
 
+export const ROLE ={
+    PRINCIPAL: 1,
+    TEACHER: 2,
+    STUDENT: 3,
+};

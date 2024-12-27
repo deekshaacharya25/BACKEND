@@ -34,10 +34,6 @@ let userData = await teacherModel.findOne({
     $or:[{ phone: username},{email:username}],
    });
 
-// if (isExist.length > 0){
-//     return send(res, setErrorRes(RESPONSE.ALREADY_EXISTS,"phone"));
-// }
-
 
    
 if(userData && (await bcrypt.compare(password, userData.password))){
@@ -46,6 +42,7 @@ if(userData && (await bcrypt.compare(password, userData.password))){
     teacher_name: userData.teacher_name,
     phone: userData.phone,
     email: userData.email,
+    role: userData.role,
     },process.env.SECRETKEY
 );
     return send(res,RESPONSE.SUCCESS,token);

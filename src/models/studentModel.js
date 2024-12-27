@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { Schema } from "mongoose";
 
 
 const studentSchema = new mongoose.Schema({
@@ -24,10 +24,11 @@ const studentSchema = new mongoose.Schema({
             //     type: [String],
             //     required:true,
             //     },
-            //     teacher_id: {
-            //         type: String,
-            //         required:true,
-            //         },
+                teacher_id: {
+                    type: Schema.Types.ObjectId,
+                    ref:"teachers",
+                    required:true,
+                    },
 });
 
 

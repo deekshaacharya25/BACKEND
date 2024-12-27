@@ -25,7 +25,11 @@ export const RESPONSE = {
     },
     ACCESS_DENIED:{
         code:205,
-        message: "Access denied"
+        message: "Access denied",
+    },
+    UNAUTHORIZED:{
+        code:205,
+        message: "Unauthorized Request",
     },
 
     };

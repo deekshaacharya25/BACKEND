@@ -3,15 +3,19 @@ const router = Router();
 import studentModel from "../../models/studentModel.js";
 import { RESPONSE } from "../../config/global.js";
 import {send, setErrorRes } from "../../helpers/responseHelper.js";
-import { STATE } from "../../config/constants.js";
+import { ROLE, STATE } from "../../config/constants.js";
 import validator from "validator";
 import { authenticate } from "../../middlewares/authenticate.js";
 
 router.post("/",authenticate, async (req, res) => {
     try {
 
+        if(req.user.role != ROLE.TEACHER){
+            return send(res,RESPONSE.UNAUTHORIZED);
+        }
         const { name, rollno, email } = req.body;
-        //console.log(req.body);
+        let teacher_id =req.user.id;
+        // console.log(req.body);
         const student = studentModel();
         // console.log({name,rollno,email});
         if (!name || name == undefined) {
@@ -76,7 +80,7 @@ if (isExist.length > 0){
             name: name,
             rollno: rollno,
             email: email,
-
+            teacher_id: teacher_id,
         });
         return send(res,RESPONSE.SUCCESS);
         // res.json(RESPONSE.SUCCESS);

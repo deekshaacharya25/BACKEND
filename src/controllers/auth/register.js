@@ -3,7 +3,7 @@ const router = Router();
 import teacherModel from "../../models/teacherModel.js";
 import { RESPONSE } from "../../config/global.js";
 import {send, setErrorRes } from "../../helpers/responseHelper.js";
-import { STATE } from "../../config/constants.js";
+import { ROLE, STATE } from "../../config/constants.js";
 import validator from "validator";
 import bcrypt from "bcrypt"
 router.post("/", async (req, res) => {
@@ -86,7 +86,7 @@ console.log("encryptedPass",encryptedPass);
             phone: phone,
             email: email,
             password:encryptedPass,
-
+            role: ROLE.TEACHER,
             
         });
         return send(res,RESPONSE.SUCCESS);

@@ -20,6 +20,10 @@ const teacherSchema = new mongoose.Schema({
             type: String,
             required:true,
             },
+    role: {
+        type: Number,
+        required:true,
+    },
     isactive: {
                 type: Number,
                 default:1,
