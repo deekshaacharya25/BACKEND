@@ -31,6 +31,10 @@ export const RESPONSE = {
         code:205,
         message: "Unauthorized Request",
     },
+    MULTER_ERR:{
+        code:207,
+        message: "Multer Error!",
+    }
 
     };
     

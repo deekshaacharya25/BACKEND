@@ -64,7 +64,6 @@ let isValidPhone = phone.toString().match(/^\+91\d{10}$/);
 
 if (!isValidPhone) {
     return send(res, setErrorRes(RESPONSE.INVALID,"phone"));
- 
 }
 
 let isValidPassword = password.toString().match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/);
