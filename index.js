@@ -6,7 +6,10 @@ const app=express();
 import dotenv from "dotenv";
 import {connectDB} from "./src/helpers/dbConnection.js";
 import routes from "./router.js";
+import path from "path";
 dotenv.config();
+const __dirname =  path.resolve();
+console.log(__dirname);
 
 
 import cors from "cors";
@@ -21,6 +24,7 @@ const PORT=process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
+app.use(express.static(path.join(__dirname, "public/uploads")));
 connectDB();
 
 

@@ -50,7 +50,11 @@ router.get("/", authenticate, async (req, res) => {
         if(studentData.length==0){
             return setErrorRes(res, setErrorRes(RESPONSE.NOT_FOUND, "Student Data"));
         }
-
+        studentData = (studentData || []).map((itm) => ({
+            ...itm,
+            image: (itm.image || []).map((img) => "/" + img),
+          }));
+          
 
         return send(res,RESPONSE.SUCCESS,studentData);
     } catch (error) {

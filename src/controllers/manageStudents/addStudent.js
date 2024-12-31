@@ -29,6 +29,14 @@ router.post("/", authenticate, async (req, res) => {
         return send(res, RESPONSE.UNKNOWN_ERR);
         }
 
+
+        let filename = [];
+        if (req.files != null) {
+          req.files.forEach((ele) =>{
+            filename.push(ele.filename);
+          });
+        }
+        console.log(filename);
       // Ensure at least one file is uploaded
       if (!req.files || req.files.length < 1) {
         return send(res, setErrorRes(RESPONSE.REQUIRED, "image"));
@@ -42,31 +50,15 @@ router.post("/", authenticate, async (req, res) => {
 
       // Validate required fields
       if (!name || name == undefined) {
-        // const response = RESPONSE.REQUIRED;
 
-        // res.json({
-        //     code: response.code,
-        //     message : "name" + response.message,
-        // });
-        // req.json(RESPONSE.REQUIRED);
         return send(res, setErrorRes(RESPONSE.REQUIRED,"name"));
     }
     if (!rollno || rollno == undefined) {
-        // const response = RESPONSE.REQUIRED;
-
-        // res.json({
-        //     code: response.code,
-        //     message : "rollno" + response.message,
-        // });
+      
         return send(res, setErrorRes(RESPONSE.REQUIRED,"rollno"));
     }
     if (!email || email == undefined) {
-        // const response = RESPONSE.REQUIRED;
-
-        // res.json({
-        //     code: response.code,
-        //     message : "email" + response.message,
-        // });
+      
         return send(res, setErrorRes(RESPONSE.REQUIRED,"email"));
      
     }
@@ -96,8 +88,11 @@ router.post("/", authenticate, async (req, res) => {
         rollno: rollno,
         email: email,
         teacher_id: teacher_id,
+        image:filename,
       });
 
+
+     
       // Send success response
       return send(res, RESPONSE.SUCCESS);
     });
